@@ -4,6 +4,7 @@ import {
   Button,
   FormControl,
   FormControlLabel,
+  FormHelperText,
   FormLabel,
   MenuItem,
   Radio,
@@ -13,6 +14,7 @@ import {
 import { civilStatus } from "@/constants/gender";
 import { useFormik } from "formik";
 import { IUser } from "@/intefaces";
+import { userValidation } from "@/utils/validationsSchema";
 
 const defaultUser: IUser = {
   firstName: "",
@@ -24,8 +26,9 @@ const defaultUser: IUser = {
 };
 
 const HomePage = () => {
-  const { values, handleChange, handleSubmit } = useFormik({
+  const { values, touched, errors, handleChange, handleSubmit } = useFormik({
     initialValues: defaultUser,
+    validationSchema: userValidation,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
@@ -56,6 +59,8 @@ const HomePage = () => {
           label="Nombre"
           value={values.firstName}
           onChange={handleChange}
+          error={touched.firstName && Boolean(errors.firstName)}
+          helperText={touched.firstName && errors.firstName}
         />
         <TextField
           type="text"
@@ -63,6 +68,8 @@ const HomePage = () => {
           label="Apellido"
           value={values.lastName}
           onChange={handleChange}
+          error={touched.lastName && Boolean(errors.lastName)}
+          helperText={touched.lastName && errors.lastName}
         />
         <TextField
           type="email"
@@ -70,6 +77,8 @@ const HomePage = () => {
           label="Correo"
           value={values.email}
           onChange={handleChange}
+          error={touched.email && Boolean(errors.email)}
+          helperText={touched.email && errors.email}
         />
         <TextField
           type="number"
@@ -77,6 +86,8 @@ const HomePage = () => {
           label="Edad"
           value={values.age}
           onChange={handleChange}
+          error={touched.age && Boolean(errors.age)}
+          helperText={touched.age && errors.age}
         />
         <TextField
           select
@@ -84,6 +95,8 @@ const HomePage = () => {
           label="Estado civil"
           value={values.civilStatus}
           onChange={handleChange}
+          error={touched.civilStatus && Boolean(errors.civilStatus)}
+          helperText={touched.civilStatus && errors.civilStatus}
         >
           {civilStatus.map((option) => (
             <MenuItem key={option} value={option}>
@@ -91,7 +104,7 @@ const HomePage = () => {
             </MenuItem>
           ))}
         </TextField>
-        <FormControl>
+        <FormControl error={touched.gender && Boolean(errors.gender)}>
           <FormLabel>Género</FormLabel>
           <RadioGroup
             name="gender"
@@ -109,6 +122,7 @@ const HomePage = () => {
               label="Masculino"
             />
           </RadioGroup>
+          <FormHelperText>{touched.gender && errors.gender}</FormHelperText>
         </FormControl>
         <Button variant="contained" sx={{ mt: 1 }} type="submit">
           Registrar
