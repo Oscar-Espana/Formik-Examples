@@ -1,4 +1,4 @@
-import { civilStatus as civilStatusUser } from "@/constants/gender";
+import { civilStatus as civilStatusUser } from "@/constants/user";
 import * as Yup from "yup";
 
 const firstName = Yup.string().required("Nombre es requerido");

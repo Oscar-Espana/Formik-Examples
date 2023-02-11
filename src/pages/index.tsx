@@ -11,7 +11,7 @@ import {
   RadioGroup,
   TextField,
 } from "@mui/material";
-import { civilStatus } from "@/constants/gender";
+import { civilStatus, genders } from "@/constants/user";
 import { useFormik } from "formik";
 import { IUser } from "@/intefaces";
 import { userValidation } from "@/utils/validationsSchema";
@@ -111,16 +111,14 @@ const HomePage = () => {
             value={values.gender}
             onChange={handleChange}
           >
-            <FormControlLabel
-              value="femenino"
-              control={<Radio />}
-              label="Femenino"
-            />
-            <FormControlLabel
-              value="masculino"
-              control={<Radio />}
-              label="Masculino"
-            />
+            {genders.map((option) => (
+              <FormControlLabel
+                key={option}
+                value={option}
+                control={<Radio />}
+                label={option}
+              />
+            ))}
           </RadioGroup>
           <FormHelperText>{touched.gender && errors.gender}</FormHelperText>
         </FormControl>

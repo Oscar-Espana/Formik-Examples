@@ -5,3 +5,5 @@ export const civilStatus = [
   "Separado",
   "Divorciado",
 ];
+
+export const genders = ["Másculino", "Femenino"];
