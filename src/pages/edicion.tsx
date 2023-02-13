@@ -3,7 +3,7 @@ import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Formik } from "formik";
 import { cities, countries } from "@/constants";
 import { ICity, ICountry } from "@/intefaces";
-import { Autocomplete, TextInput } from "@/components";
+import { Autocomplete, TextInput } from "@/components/ui";
 import { activities } from "../constants/activities";
 
 interface FormData {
