@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Formik } from "formik";
 import { cities, countries } from "@/constants";
-import { ICity, ICountry } from "@/intefaces";
+import { ICity, ICountry } from "@/interfaces";
 import { Autocomplete, TextInput } from "@/components/ui";
 import { activities } from "../constants/activities";
 

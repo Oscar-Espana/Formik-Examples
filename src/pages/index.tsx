@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { civilStatus, genders } from "@/constants/user";
 import { useFormik } from "formik";
-import { IUser } from "@/intefaces";
+import { IUser } from "@/interfaces";
 import { userValidation } from "@/utils/validationsSchema";
 
 const defaultUser: IUser = {

@@ -2,9 +2,9 @@ import React from "react";
 import { Box, Button, FormControlLabel, MenuItem, Radio } from "@mui/material";
 import { civilStatus, genders } from "@/constants/user";
 import { Formik } from "formik";
-import { IUser } from "@/intefaces";
+import { IUser } from "@/interfaces";
 import { userValidation } from "@/utils/validationsSchema";
-import { TextInput, RadioGroup } from "@/components";
+import { TextInput, RadioGroup } from "@/components/ui";
 
 const defaultUser: IUser = {
   firstName: "",

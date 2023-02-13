@@ -1,4 +1,4 @@
-import { ICountry } from "@/intefaces";
+import { ICountry } from "@/interfaces";
 
 export const countries: ICountry[] = [
   {
