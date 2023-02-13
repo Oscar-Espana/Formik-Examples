@@ -1,7 +1,7 @@
-import { countries, activities, cities } from "@/constants";
-import { FormData } from "@/pages/edicion";
-import { Box, Typography, Button } from "@mui/material";
 import React from "react";
+import { Box, Typography, Button } from "@mui/material";
+import { countries, activities, cities } from "@/constants";
+import { ITripPlan } from "@/interfaces";
 import { Autocomplete, TextInput } from "../ui";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
     value: any,
     shouldValidate?: boolean | undefined
   ) => void;
-  values: FormData;
+  values: ITripPlan;
 }
 export const EditionForm = ({ handleSubmit, setFieldValue, values }: Props) => {
   const getCitiesFilteredByCountry = (countryId: number | undefined) => {

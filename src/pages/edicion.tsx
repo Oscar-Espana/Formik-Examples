@@ -1,27 +1,22 @@
 import React from "react";
 import { Box, Container, Grid } from "@mui/material";
 import { Formik } from "formik";
-import { ICity, ICountry } from "@/interfaces";
-import { EditionForm } from "@/components/edition";
+import { ITripPlan } from "@/interfaces";
+import { EditionForm, TripPlannerTable } from "@/components/edition";
 
-export interface FormData {
-  country: ICountry | null;
-  city: ICity | null;
-  budget: number;
-  activities: any[];
-}
-
-const initialValues: FormData = {
+const initialValues: ITripPlan = {
+  id: "",
   country: null,
   city: null,
   budget: 0,
   activities: [],
 };
+
 const EditionPage = () => {
   return (
     <Box>
       <Container>
-        <Grid container>
+        <Grid container spacing={5}>
           <Grid item xs={12} md={4}>
             <Formik
               initialValues={initialValues}
@@ -38,7 +33,9 @@ const EditionPage = () => {
               )}
             </Formik>
           </Grid>
-          <Grid item xs={12} md={8}></Grid>
+          <Grid item xs={12} md={8}>
+            <TripPlannerTable />
+          </Grid>
         </Grid>
       </Container>
     </Box>
