@@ -5,6 +5,7 @@ import { ITripPlan } from "@/interfaces";
 import { Autocomplete, TextInput } from "../ui";
 
 interface Props {
+  isEditForm: boolean;
   handleSubmit: (e?: React.FormEvent<HTMLFormElement> | undefined) => void;
   setFieldValue: (
     field: string,
@@ -13,7 +14,12 @@ interface Props {
   ) => void;
   values: ITripPlan;
 }
-export const EditionForm = ({ handleSubmit, setFieldValue, values }: Props) => {
+export const EditionForm = ({
+  isEditForm,
+  handleSubmit,
+  setFieldValue,
+  values,
+}: Props) => {
   const getCitiesFilteredByCountry = (countryId: number | undefined) => {
     return cities.filter((city) => city.countryId === countryId);
   };
@@ -85,7 +91,7 @@ export const EditionForm = ({ handleSubmit, setFieldValue, values }: Props) => {
       </Box>
 
       <Button variant="contained" sx={{ mt: 2 }} type="submit">
-        Registrar
+        {isEditForm ? "Actualizar" : "Registrar"}
       </Button>
     </Box>
   );
