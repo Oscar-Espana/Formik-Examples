@@ -1,8 +1,9 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { countries, activities, cities } from "@/constants";
-import { ITripPlan } from "@/interfaces";
+import { IActivity, ITripPlan } from "@/interfaces";
 import { Autocomplete, TextInput } from "../ui";
+import Activity from "./Activity";
 
 interface Props {
   isEditForm: boolean;
@@ -23,6 +24,18 @@ export const EditionForm = ({
   const getCitiesFilteredByCountry = (countryId: number | undefined) => {
     return cities.filter((city) => city.countryId === countryId);
   };
+
+  const handleSelectActivities = (activity: IActivity) => {
+    const activitiesAux = [...values.activities];
+    const indexActivity = activitiesAux.findIndex(
+      (item) => item.id === activity.id
+    );
+    indexActivity === -1
+      ? activitiesAux.push(activity)
+      : activitiesAux.splice(indexActivity, 1);
+    setFieldValue("activities", activitiesAux);
+  };
+
   return (
     <Box
       component={"form"}
@@ -68,25 +81,12 @@ export const EditionForm = ({
       <Typography>Actividades a realizar:</Typography>
       <Box sx={{ display: "flex", justifyContent: "space-around" }}>
         {activities.map((activity) => (
-          <Box key={activity.id}>
-            <Box
-              sx={{
-                width: "50px",
-                height: "50px",
-                borderRadius: "50%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                border: "solid 1px gray",
-                cursor: "pointer",
-              }}
-            >
-              {activity.icon}
-            </Box>
-            <Typography variant="caption" textAlign="center">
-              {activity.label}
-            </Typography>
-          </Box>
+          <Activity
+            key={activity.id}
+            activity={activity}
+            activitiesSelected={values.activities}
+            onSelectActivities={() => handleSelectActivities(activity)}
+          />
         ))}
       </Box>
 

@@ -3,8 +3,9 @@ import Nightlife from "@mui/icons-material/NightlifeOutlined";
 import Pool from "@mui/icons-material/PoolOutlined";
 import Shopping from "@mui/icons-material/ShoppingBagOutlined";
 import Restaurant from "@mui/icons-material/RestaurantOutlined";
+import { IActivity } from "@/interfaces";
 
-export const activities = [
+export const activities: IActivity[] = [
   {
     id: 1,
     label: "Deportes",

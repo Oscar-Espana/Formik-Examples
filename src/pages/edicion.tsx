@@ -66,7 +66,7 @@ const EditionPage = () => {
   return (
     <Box>
       <Container>
-        <Grid container spacing={5}>
+        <Grid container spacing={5} sx={{ my: 5 }}>
           <Grid item xs={12} md={4}>
             <Formik
               initialValues={tripSelected || initialValues}

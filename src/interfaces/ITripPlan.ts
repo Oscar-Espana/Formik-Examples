@@ -1,3 +1,4 @@
+import { IActivity } from "./IActivity";
 import { ICountry } from "./ICitiy";
 import { ICity } from "./ICountry";
 
@@ -6,5 +7,5 @@ export interface ITripPlan {
   country: ICountry | null;
   city: ICity | null;
   budget: number;
-  activities: any[];
+  activities: IActivity[];
 }

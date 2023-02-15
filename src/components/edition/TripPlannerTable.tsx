@@ -7,8 +7,7 @@ import {
 } from "@mui/x-data-grid";
 import EditIcon from "@mui/icons-material/EditOutlined";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
-import { ITripPlan } from "@/interfaces";
-import { cities, countries } from "@/constants";
+import { IActivity, ITripPlan } from "@/interfaces";
 import { Box, IconButton } from "@mui/material";
 
 interface Props {
@@ -50,6 +49,7 @@ export const TripPlannerTable = ({
     {
       field: "country",
       headerName: "País",
+      minWidth: 125,
       renderCell: (params: GridRenderCellParams) => {
         const country = params.row.country?.name || "";
         return <>{country}</>;
@@ -58,12 +58,22 @@ export const TripPlannerTable = ({
     {
       field: "city",
       headerName: "Ciudad",
+      minWidth: 150,
       renderCell: (params: GridRenderCellParams) => {
         const city = params.row.city?.name || "";
         return <>{city}</>;
       },
     },
     { field: "budget", headerName: "Presupuesto" },
+    {
+      field: "activities",
+      headerName: "Actividades",
+      minWidth: 350,
+      renderCell: (params: GridRenderCellParams) => {
+        const activitiesSelected: IActivity[] = params.row.activities || "";
+        return <>{activitiesSelected.map((item) => item.label).join(", ")}</>;
+      },
+    },
   ];
 
   return (
