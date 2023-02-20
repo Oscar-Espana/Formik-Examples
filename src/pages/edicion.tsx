@@ -4,8 +4,9 @@ import { Formik, FormikHelpers, FormikValues } from "formik";
 import { ITripPlan } from "@/interfaces";
 import { EditionForm, TripPlannerTable } from "@/components/edition";
 import { cities, countries } from "@/constants";
+import { tripValidation } from "@/utils/validationsSchema";
 
-const initialValues: ITripPlan = {
+const defaultTrip: ITripPlan = {
   id: "",
   country: null,
   city: null,
@@ -69,7 +70,8 @@ const EditionPage = () => {
         <Grid container spacing={5} sx={{ my: 5 }}>
           <Grid item xs={12} md={4}>
             <Formik
-              initialValues={tripSelected || initialValues}
+              initialValues={tripSelected || defaultTrip}
+              validationSchema={tripValidation}
               enableReinitialize
               onSubmit={(
                 values: ITripPlan,
