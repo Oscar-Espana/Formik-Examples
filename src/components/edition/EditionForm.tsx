@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-import { countries, activities, cities } from "@/constants";
-import { IActivity, ITripPlan } from "@/interfaces";
+import { countries, cities } from "@/constants";
+import { ITripPlan } from "@/interfaces";
 import { Autocomplete, TextInput } from "../ui";
-import Activity from "./Activity";
+import Activities from "./Activities";
 
 interface Props {
   isEditForm: boolean;
@@ -23,17 +23,6 @@ export const EditionForm = ({
 }: Props) => {
   const getCitiesFilteredByCountry = (countryId: number | undefined) => {
     return cities.filter((city) => city.countryId === countryId);
-  };
-
-  const handleSelectActivities = (activity: IActivity) => {
-    const activitiesAux = [...values.activities];
-    const indexActivity = activitiesAux.findIndex(
-      (item) => item.id === activity.id
-    );
-    indexActivity === -1
-      ? activitiesAux.push(activity)
-      : activitiesAux.splice(indexActivity, 1);
-    setFieldValue("activities", activitiesAux);
   };
 
   return (
@@ -78,17 +67,7 @@ export const EditionForm = ({
 
       <TextInput type="number" name="budget" label="Presupuesto estimado" />
 
-      <Typography>Actividades a realizar:</Typography>
-      <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-        {activities.map((activity) => (
-          <Activity
-            key={activity.id}
-            activity={activity}
-            activitiesSelected={values.activities}
-            onSelectActivities={() => handleSelectActivities(activity)}
-          />
-        ))}
-      </Box>
+      <Activities name="activities" />
 
       <Button variant="contained" sx={{ mt: 2 }} type="submit">
         {isEditForm ? "Actualizar" : "Registrar"}
