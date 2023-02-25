@@ -1,26 +1,68 @@
+import React, { useState } from "react";
 import { Question } from "@/components/questions";
 import { questions } from "@/constants";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import { Formik } from "formik";
-import React from "react";
+import { IAnswerQuestion } from "../interfaces";
+
+const defaultAnswers: { answers: IAnswerQuestion[] } = {
+  answers: [],
+};
 
 const QuestionsPage = () => {
+  const [isFormSaved, setIsFormSaved] = useState(false);
+
   return (
-    <Formik
-      initialValues={{ questions }}
-      enableReinitialize
-      onSubmit={(values) => {
-        console.log("values", values);
-      }}
-    >
-      {({ values, setFieldValue, handleSubmit }) => (
-        <div>
-          {questions.map((question) => (
-            <Question key={question.id} question={question} />
-          ))}
-        </div>
-      )}
-    </Formik>
+    <Container sx={{ my: 5 }}>
+      <Formik
+        initialValues={defaultAnswers}
+        enableReinitialize
+        onSubmit={(values) => {
+          setIsFormSaved(true);
+          console.log("value", values);
+        }}
+      >
+        {({ values, setFieldValue, handleSubmit }) => (
+          <Box
+            component={"form"}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+            }}
+            onSubmit={handleSubmit}
+          >
+            <Typography
+              textAlign={"center"}
+              component="h2"
+              sx={{
+                fontWeight: "500",
+                fontSize: "28px",
+                mb: 1.5,
+              }}
+            >
+              Prueba de Matemáticas
+            </Typography>
+            {questions.map((question) => (
+              <Question
+                isFormSaved={isFormSaved}
+                key={question.id}
+                question={question}
+                answersSelected={values.answers}
+                onChangeAnswers={(answers: IAnswerQuestion[]) => {
+                  setFieldValue("answers", answers);
+                }}
+              />
+            ))}
+            <Box sx={{ margin: "0 0 0 auto" }}>
+              <Button type="submit" variant="contained" disabled={isFormSaved}>
+                Finalizar prueba
+              </Button>
+            </Box>
+          </Box>
+        )}
+      </Formik>
+    </Container>
   );
 };
 

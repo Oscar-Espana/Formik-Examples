@@ -10,3 +10,9 @@ export interface IQuestion {
   points: number;
   options: IOptionQuestion[];
 }
+
+export interface IAnswerQuestion {
+  id: number;
+  idQuestion: number;
+  idOptionQuestion: number;
+}
