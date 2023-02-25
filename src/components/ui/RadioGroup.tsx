@@ -8,7 +8,6 @@ import {
   RadioGroupProps,
   FormHelperText,
 } from "@mui/material";
-import { genders } from "@/constants/user";
 import { useField } from "formik";
 
 interface Props extends Omit<RadioGroupProps, "label" | "name"> {
@@ -16,21 +15,13 @@ interface Props extends Omit<RadioGroupProps, "label" | "name"> {
   name: string;
 }
 
-export const RadioGroup = ({ label, ...props }: Props) => {
+export const RadioGroup = ({ label, children, ...props }: Props) => {
   const [field, meta] = useField(props.name);
-
   return (
     <FormControl error={meta.touched && Boolean(meta.error)}>
       <FormLabel>{label}</FormLabel>
       <RadioGroupMui {...field} {...props}>
-        {genders.map((option) => (
-          <FormControlLabel
-            key={option}
-            value={option}
-            control={<Radio />}
-            label={option}
-          />
-        ))}
+        {children}
       </RadioGroupMui>
       <FormHelperText>{meta.touched && meta.error}</FormHelperText>
     </FormControl>
