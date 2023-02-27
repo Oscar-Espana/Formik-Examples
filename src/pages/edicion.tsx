@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Box, Container, Grid } from "@mui/material";
-import { Formik, FormikHelpers, FormikValues } from "formik";
+import { Container, Grid } from "@mui/material";
+import { Formik, FormikHelpers } from "formik";
 import { ITripPlan } from "@/interfaces";
+import { MainLayout } from "@/layouts";
 import { EditionForm, TripPlannerTable } from "@/components/edition";
 import { cities, countries } from "@/constants";
 import { tripValidation } from "@/utils/validationsSchema";
@@ -65,9 +66,9 @@ const EditionPage = () => {
   };
 
   return (
-    <Box>
+    <MainLayout>
       <Container>
-        <Grid container spacing={5} sx={{ my: 5 }}>
+        <Grid container spacing={5}>
           <Grid item xs={12} md={4}>
             <Formik
               initialValues={tripSelected || defaultTrip}
@@ -104,7 +105,7 @@ const EditionPage = () => {
           </Grid>
         </Grid>
       </Container>
-    </Box>
+    </MainLayout>
   );
 };
 

@@ -9,23 +9,9 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import { menu } from "@/constants";
 
 const drawerWidth = 250;
-
-const menu = [
-  {
-    label: "Componentes reutilizables",
-    href: "/componentes-reusables",
-  },
-  {
-    label: "Agregar / Editar",
-    href: "/",
-  },
-  {
-    label: "Agregar / Editar",
-    href: "/test",
-  },
-];
 
 export const SideBar = () => {
   const { asPath } = useRouter();

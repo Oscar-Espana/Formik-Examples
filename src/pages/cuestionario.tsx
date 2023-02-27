@@ -4,6 +4,7 @@ import { questions } from "@/constants";
 import { Box, Button, Container, Typography } from "@mui/material";
 import { Formik } from "formik";
 import { IAnswerQuestion } from "../interfaces";
+import { MainLayout } from "@/layouts";
 
 const defaultAnswers: { answers: IAnswerQuestion[] } = {
   answers: [],
@@ -13,56 +14,62 @@ const QuestionsPage = () => {
   const [isFormSaved, setIsFormSaved] = useState(false);
 
   return (
-    <Container sx={{ my: 5 }}>
-      <Formik
-        initialValues={defaultAnswers}
-        enableReinitialize
-        onSubmit={(values) => {
-          setIsFormSaved(true);
-          console.log("value", values);
-        }}
-      >
-        {({ values, setFieldValue, handleSubmit }) => (
-          <Box
-            component={"form"}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
-            }}
-            onSubmit={handleSubmit}
-          >
-            <Typography
-              textAlign={"center"}
-              component="h2"
+    <MainLayout>
+      <Container>
+        <Formik
+          initialValues={defaultAnswers}
+          enableReinitialize
+          onSubmit={(values) => {
+            setIsFormSaved(true);
+            console.log("value", values);
+          }}
+        >
+          {({ values, setFieldValue, handleSubmit }) => (
+            <Box
+              component={"form"}
               sx={{
-                fontWeight: "500",
-                fontSize: "28px",
-                mb: 1.5,
+                display: "flex",
+                flexDirection: "column",
+                gap: 2,
               }}
+              onSubmit={handleSubmit}
             >
-              Prueba de Matemáticas
-            </Typography>
-            {questions.map((question) => (
-              <Question
-                isFormSaved={isFormSaved}
-                key={question.id}
-                question={question}
-                answersSelected={values.answers}
-                onChangeAnswers={(answers: IAnswerQuestion[]) => {
-                  setFieldValue("answers", answers);
+              <Typography
+                textAlign={"center"}
+                component="h2"
+                sx={{
+                  fontWeight: "500",
+                  fontSize: "28px",
+                  mb: 1.5,
                 }}
-              />
-            ))}
-            <Box sx={{ margin: "0 0 0 auto" }}>
-              <Button type="submit" variant="contained" disabled={isFormSaved}>
-                Finalizar prueba
-              </Button>
+              >
+                Prueba de Matemáticas
+              </Typography>
+              {questions.map((question) => (
+                <Question
+                  isFormSaved={isFormSaved}
+                  key={question.id}
+                  question={question}
+                  answersSelected={values.answers}
+                  onChangeAnswers={(answers: IAnswerQuestion[]) => {
+                    setFieldValue("answers", answers);
+                  }}
+                />
+              ))}
+              <Box sx={{ margin: "0 0 0 auto" }}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  disabled={isFormSaved}
+                >
+                  Finalizar prueba
+                </Button>
+              </Box>
             </Box>
-          </Box>
-        )}
-      </Formik>
-    </Container>
+          )}
+        </Formik>
+      </Container>
+    </MainLayout>
   );
 };
 
