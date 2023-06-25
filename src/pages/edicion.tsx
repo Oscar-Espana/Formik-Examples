@@ -4,7 +4,7 @@ import { Formik, FormikHelpers } from "formik";
 import { ITripPlan } from "@/interfaces";
 import { MainLayout } from "@/layouts";
 import { EditionForm, TripPlannerTable } from "@/components/edition";
-import { cities, countries } from "@/constants";
+import { cities, countries, activities } from "@/constants";
 import { tripValidation } from "@/utils/validationsSchema";
 
 const defaultTrip: ITripPlan = {
@@ -21,14 +21,14 @@ const initialTrips: ITripPlan[] = [
     country: countries[0],
     city: cities[2],
     budget: 400,
-    activities: [],
+    activities: [activities[0], activities[4]],
   },
   {
     id: "2",
     country: countries[2],
     city: cities[5],
     budget: 200,
-    activities: [],
+    activities: [activities[2], activities[3]],
   },
 ];
 
