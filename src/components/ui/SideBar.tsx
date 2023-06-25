@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import {
@@ -9,29 +9,45 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { menu } from "@/constants";
 
 const drawerWidth = 250;
 
-export const SideBar = () => {
+interface Props {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const SideBar: FC<Props> = ({ isOpen, onClose }) => {
   const { asPath } = useRouter();
+  const theme = useTheme();
+  const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Drawer
-      variant="permanent"
-      open={true}
-      anchor="left"
       sx={{
         width: drawerWidth,
+        flexShrink: 0,
         "& .MuiDrawer-paper": {
           boxSizing: "border-box",
-          width: drawerWidth,
+          width: "inherit",
           backgroundColor: "#5152f1",
           color: "white",
           border: "none",
           paddingY: 4,
         },
+        marginLeft: isOpen ? 0 : `-${drawerWidth}px`,
+        transition: theme.transitions.create(["margin"], {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
       }}
+      variant={isMobileScreen ? "temporary" : "persistent"}
+      anchor="left"
+      open={isOpen}
+      onClose={onClose}
     >
       <List>
         {menu.map((item, index) => (
