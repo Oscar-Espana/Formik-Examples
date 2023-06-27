@@ -15,4 +15,8 @@ export const menu = [
     label: "Cuestionario",
     href: "/cuestionario",
   },
+  {
+    label: "Formularios anidados",
+    href: "/formularios-anidados",
+  },
 ];
